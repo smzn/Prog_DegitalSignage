@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -58,5 +59,16 @@ public class SignageActivity extends AppCompatActivity {
         }, 0, 50);
 
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
+            if (video.isPlaying()) video.pause();
+            else video.start();
+        }
+        if(keyCode==KeyEvent.KEYCODE_MEDIA_PLAY) video.start();
+        if(keyCode==KeyEvent.KEYCODE_MEDIA_PAUSE) video.pause();
+        return super.onKeyDown(keyCode, event);
     }
 }
